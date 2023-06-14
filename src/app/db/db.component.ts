@@ -1,3 +1,4 @@
+import { PlayerService } from './../player/player-service';
 import { Component } from '@angular/core';
 import { Player } from '../player/player';
 
@@ -7,33 +8,17 @@ import { Player } from '../player/player';
   styleUrls: ['./db.component.css']
 })
 export class DbComponent {
-    _players : Array<Player>;
-    _playerMap : Map<string,Player>;
-    playerName : string;
+  playerName : string;
+  players : Array<Player>;
+
+  constructor(private Playerservice : PlayerService){
+      this.playerName = "";
+      this.players = this.Playerservice.players;
+  }
+
+  addPlayer(name : string){
+    this.Playerservice.addPlayer(name);
+    this.playerName = "";
+  }
     
-
-    constructor(){
-        this._players = new Array<Player>;
-        this._playerMap = new Map<string,Player>;
-        this.playerName = "";
-        
-    }
-
-    get players(){
-        return this._players;
-    }
-
-    addPlayer(playerName : string){
-        let temp = new Player(playerName);
-        if(this._playerMap.get(temp.name) == undefined){
-          this._players.push(temp);
-          this._playerMap.set(temp.name,temp);
-        }
-        this.playerName = '';
-        
-    }
-
-    getPlayer(playerName : string){
-        return this._playerMap.get(playerName);
-    }
 }

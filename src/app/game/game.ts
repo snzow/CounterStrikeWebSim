@@ -11,7 +11,7 @@ export class Game{
     }
 
 
-    playGame(){
+    playGame() : Player{
         
         let p1s = this.playerA.skill;
         let p2s = this.playerB.skill;
@@ -29,10 +29,12 @@ export class Game{
         if(p1Stocks > 0){
             this.playerA.addWin();
             this.playerB.addLoss();
+            return this.playerA;
         }
         else{
             this.playerA.addLoss();
             this.playerB.addWin();
+            return this.playerB;
         }
 
         

@@ -1,3 +1,5 @@
+import { TournamentService } from './tournament.service';
+import { PlayerService } from './player/player-service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,6 +10,8 @@ import { PlayerComponent } from './player/player.component';
 import { GameComponent } from './game/game.component';
 import { DbComponent } from './db/db.component';
 import { FormsModule } from '@angular/forms';
+import { Player } from './player/player';
+import { TournamentComponent } from './tournament/tournament.component';
 
 @NgModule({
   declarations: [
@@ -15,15 +19,19 @@ import { FormsModule } from '@angular/forms';
     LeaderboardComponent,
     PlayerComponent,
     GameComponent,
-    DbComponent
-    
+    DbComponent,
+    TournamentComponent
+  
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    PlayerService,
+    TournamentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
