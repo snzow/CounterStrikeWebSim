@@ -26,6 +26,7 @@ export class TournamentService {
 
    runNextTourney(){
       this.tList[this.eventCounter].initTourney(this.playerService.players);
+      this.tList[this.eventCounter].playTourney(this.playerService.players);
       this.eventCounter++;
       if(this.eventCounter >= this.tList.length){
         this.eventCounter = 0;

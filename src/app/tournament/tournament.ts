@@ -36,6 +36,34 @@ export class Tournament{
         }
     }
 
+    playTourney(entrants:Array<Player>){
+        
+        let round1 = entrants;
+        let round2 =new Array<Player>;
+        let round3 = new Array<Player>;
+        let roundList =new  Array<Array<Player>>;
+        roundList.push(round1);
+        roundList.push(round2);
+        roundList.push(round3);
+
+
+        for(let i = 0; i < 3; i++){
+            let x = roundList[i].length - 1;
+            for(let j = 0; j < roundList[i].length - 1; j++){
+                let g = new Game(roundList[i][j],roundList[i][x]);
+                if(i < 2){
+                    roundList[i + 1].push(g.playGame());
+                }
+                x--;
+            }
+        }
+        let g = new Game(roundList[2][0],roundList[2][1]);
+        let p = g.playGame();
+        this._pastWinners.push(p);
+        this._pastWinner = p;
+
+    }
+/*
     playNextRound(){
         let players = this._entrants;
         let toReturn = new Array<Player>;
@@ -52,12 +80,14 @@ export class Tournament{
         }
         this._gameList = new Array<Game>;
         for(let i = 0; i < toReturn.length/2; i ++){
+            toReturn[i]._points += this._points;
+            toReturn[reverseCounter]._points += this._points;
             let game = new Game(toReturn[i],toReturn[reverseCounter]);
             reverseCounter--;
             this._gameList.push(game);
         }
     }
-
+*/
 
 
 }

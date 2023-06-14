@@ -1,6 +1,7 @@
 import { TournamentService } from '../tournament.service';
 import { Component } from '@angular/core';
 import { Tournament } from './tournament';
+import { PlayerService } from '../player/player-service';
 
 @Component({
   selector: 'app-tournament',
@@ -11,18 +12,13 @@ export class TournamentComponent {
   name : string;
   tourney : Tournament;
 
-  constructor(private tournamentService : TournamentService){
+  constructor(private tournamentService : TournamentService, private playerService : PlayerService){
       this.name = tournamentService.currentTourney._name;
       this.tourney = tournamentService.currentTourney;
   }
 
   nextRound(){
-    if(this.tourney._entrants.length <= 1){
-      this.tournamentService.runNextTourney();
-    }
-    else{
-      this.tourney = this.tournamentService.currentTourney;
-      this.tourney.playNextRound;
-    }
+    this.tourney = this.tournamentService.currentTourney;
+    this.tournamentService.runNextTourney();
    }
 }
