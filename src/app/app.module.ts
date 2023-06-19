@@ -1,8 +1,8 @@
-import { TournamentService } from './tournament.service';
+import { LeaderboardService } from './leaderboard.service';
+import { TournamentService } from './tournament/tournament.service';
 import { PlayerService } from './player/player-service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
@@ -30,7 +30,8 @@ import { TournamentComponent } from './tournament/tournament.component';
   ],
   providers: [
     PlayerService,
-    TournamentService
+    TournamentService,
+    LeaderboardService
   ],
   bootstrap: [AppComponent]
 })

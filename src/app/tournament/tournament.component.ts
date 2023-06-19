@@ -1,4 +1,4 @@
-import { TournamentService } from '../tournament.service';
+import { TournamentService } from './tournament.service';
 import { Component } from '@angular/core';
 import { Tournament } from './tournament';
 import { PlayerService } from '../player/player-service';
