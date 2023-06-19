@@ -11,7 +11,9 @@ import { GameComponent } from './game/game.component';
 import { DbComponent } from './db/db.component';
 import { FormsModule } from '@angular/forms';
 import { Player } from './player/player';
+import { NotificationService } from './notifications/notification.service';
 import { TournamentComponent } from './tournament/tournament.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { TournamentComponent } from './tournament/tournament.component';
     PlayerComponent,
     GameComponent,
     DbComponent,
-    TournamentComponent
+    TournamentComponent,
+    NotificationsComponent
   
   ],
   imports: [
@@ -31,7 +34,8 @@ import { TournamentComponent } from './tournament/tournament.component';
   providers: [
     PlayerService,
     TournamentService,
-    LeaderboardService
+    LeaderboardService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

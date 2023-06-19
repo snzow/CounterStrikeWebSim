@@ -1,4 +1,17 @@
 <h2> Rankings </h2>
-<ol>
-    <li *ngFor="let player of players">{{ player.name + " " + player.wins + "-" + player.losses}}</li>
-</ol>
+<table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of setPlayers()">
+        <td>{{setPlayers().indexOf(player) + 1}} || </td>
+        <td>{{ player.name }}</td>
+        <td>{{ player.points }}</td>
+      </tr>
+    </tbody>
+  </table>

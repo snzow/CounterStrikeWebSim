@@ -19,6 +19,10 @@ export class Player{
         return this._name;
     }
 
+    toString(){
+        return this._name;
+    }
+
     get skill(){
         return this._skill;
     }

@@ -1,7 +1,3 @@
 <h1>{{this.name}}</h1>
 <p>{{"Defending Champ : " + this.tourney._pastWinner.name}}</p>
 <button (click)="this.nextRound()"> Play Next Round</button>
-<p>First Round</p>
-<ol>
-    <li *ngFor="let player of tourney._entrants">{{player.name }}</li>
-</ol>

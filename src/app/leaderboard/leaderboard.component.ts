@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { PlayerService } from '../player/player-service';
 import { Player } from '../player/player';
 import { LeaderboardService } from '../leaderboard.service';
@@ -8,14 +8,17 @@ import { LeaderboardService } from '../leaderboard.service';
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.css']
 })
-export class LeaderboardComponent {
+export class LeaderboardComponent implements OnInit {
   players : Array<Player>; 
   constructor(private leaderboardService : LeaderboardService){
-    this.players = [new Player("DAVE")];
-    this.setPlayers();
+    this.players = [];
   }
 
-  setPlayers(){
-    this.players = this.leaderboardService.sortPlayers(10);
+  ngOnInit(): void {
+      this.players = this.leaderboardService.sortPlayers(10);
+  }
+
+  setPlayers() : Player[]{
+    return this.leaderboardService.sortPlayers(10);
   }
 }

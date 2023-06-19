@@ -1,6 +1,7 @@
 import { Player } from '../player/player';
 import { Game } from '../game/game';
 import { LeaderboardService } from '../leaderboard.service';
+import { NotificationService } from '../notifications/notification.service';
 
 
 
@@ -44,6 +45,7 @@ export class Tournament{
     }
 
     playTourney(entrants:Array<Player>){
+        let notifList = new Array<string>;
         if(this._type = 0){
             this._entrants = entrants.slice(0,8);
         }
@@ -61,14 +63,23 @@ export class Tournament{
         roundList.push(round3);
         for(let i = 0; i < 3; i++){
             let x = roundList[i].length - 1;
-            for(let j = 0; j < roundList[i].length - 1; j++){
+            notifList.push("--- ROUND " + (i + 1)+ " ---")
+            for(let j = 0; j < roundList[i].length/2; j++){
                 let g = new Game(roundList[i][j],roundList[i][x]);
                 g.playerA.addPoints(this._points);
                 g.playerB.addPoints(this._points);
-                console.log(g.playerA.name);
-                console.log(g.playerB.name);
+                console.log("ROUND " + (i + 1) + " " + g.playerA.toString() + " vs " + g.playerB.toString());
+                let q;
                 if(i < 2){
-                    roundList[i + 1].push(g.playGame());
+                    q = g.playGame();
+                    console.log(q + " WINS ");
+                    roundList[i + 1].push(q);
+                    if(q == g.playerA){
+                        notifList.push(g.playerA.toString() + " defeats " + g.playerB.toString());
+                    }
+                    else{
+                        notifList.push(g.playerB.toString() + " defeats " + g.playerA.toString());
+                    }
                 }
                 x--;
             }
@@ -76,9 +87,13 @@ export class Tournament{
         let g = new Game(roundList[2][0],roundList[2][1]);
         let p = g.playGame();
         this._pastWinners.push(p);
+        p.addPoints(25);
+        console.log(p.toString() + " WINS");
+        notifList.push(p.toString() + " Wins " + this._name);
         this._pastWinner = p;
-
-
+        
+        return notifList;
+        
     }
 /*
     playNextRound(){

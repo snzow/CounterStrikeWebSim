@@ -19,6 +19,7 @@ export class TournamentComponent {
 
   nextRound(){
     this.tourney = this.tournamentService.currentTourney;
+    this.name = this.tourney._name;
     this.tournamentService.runNextTourney();
    }
 }
