@@ -17,6 +17,10 @@ export class TournamentComponent {
       this.tourney = tournamentService.currentTourney;
   }
 
+  getTName() :string{
+    return this.tournamentService.currentTourney._name;
+  }
+
   nextRound(){
     this.tourney = this.tournamentService.currentTourney;
     this.name = this.tourney._name;

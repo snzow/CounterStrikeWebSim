@@ -14,6 +14,7 @@ import { Player } from './player/player';
 import { NotificationService } from './notifications/notification.service';
 import { TournamentComponent } from './tournament/tournament.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { WeekstatusComponent } from './weekstatus/weekstatus.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     GameComponent,
     DbComponent,
     TournamentComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    WeekstatusComponent
   
   ],
   imports: [

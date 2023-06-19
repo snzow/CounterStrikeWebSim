@@ -21,21 +21,21 @@ export class TournamentService {
       this.tList.push(new Tournament("Tourney 4",15,15,8,1));
 
       this._currentTourney = this.tList[0];
-      this.runNextTourney;
 
       
    }
 
    runNextTourney(){
-     
+     this.notifService.clearNotifs();
       let eventList = this.tList[this.eventCounter].playTourney(this.playerService.players);
-      eventList.forEach(this.notifService.addNotif);
+      eventList.forEach(item => this.notifService.addNotif(item));
       this.eventCounter++;
+      console.log(this.eventCounter);
       if(this.eventCounter >= this.tList.length){
         this.eventCounter = 0;
       }
       this._currentTourney = this.tList[this.eventCounter];
-      this.leaderboardService.sortPlayers;
+      this.leaderboardService.sortPlayers();
    }
 
   

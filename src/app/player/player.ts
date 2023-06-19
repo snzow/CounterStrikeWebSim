@@ -46,7 +46,7 @@ export class Player{
 
     addLoss(){
         this._losses++;
-        this._skill -+ 15;
+        this._skill -= 15;
     }
 
     addPoints(amt : number){
