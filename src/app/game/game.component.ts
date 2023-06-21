@@ -1,4 +1,4 @@
-import { PlayerService } from './../player/player-service';
+import { PlayerService } from '../services/player-service';
 import { Component } from '@angular/core';
 import { Player } from '../player/player';
 import { Game } from './game';

@@ -3,8 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class WeekService {
+export class MatchmakingService {
 
-  
   constructor() { }
 }

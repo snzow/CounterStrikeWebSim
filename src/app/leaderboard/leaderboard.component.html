@@ -5,13 +5,19 @@
         <th></th>
         <th>Name</th>
         <th>Points</th>
+        <th>Record This Year</th>
+        <th>Record All Time</th>
+        <th>Skill</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let player of setPlayers()">
         <td>{{setPlayers().indexOf(player) + 1}} || </td>
-        <td>{{ player.name }}</td>
+        <td>{{player.name}}</td>
         <td>{{ player.points }}</td>
+        <td>{{player.winsY + "-" + player.lossesY}}</td>
+        <td>{{player.wins + "-" + player.losses}}</td>
+        <td>{{player.skill}}</td>
       </tr>
     </tbody>
   </table>

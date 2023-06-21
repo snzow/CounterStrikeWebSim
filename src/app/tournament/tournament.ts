@@ -1,7 +1,7 @@
 import { Player } from '../player/player';
 import { Game } from '../game/game';
-import { LeaderboardService } from '../leaderboard.service';
-import { NotificationService } from '../notifications/notification.service';
+import { LeaderboardService } from '../services/leaderboard.service';
+import { NotificationService } from '../services/notification.service';
 
 
 
@@ -18,12 +18,20 @@ export class Tournament{
     _gameList : Array<Game>;
     _type : number;
 
-    constructor(name: string, points : number, prize : number, size : number, type : number){
+    constructor(name: string,type : number , prize : number, size : number,points? : number ){
         this._name = name;
-        this._points = points;
+        if(points != undefined){
+            this._points = points;
+        }
+        else if(type == 0){
+            this._points = 50;
+        }
+        else{
+            this._points = 25;
+        }
         this._prize = prize;
         this._size = size;
-        this._pastWinner = new Player("NO WINNER");
+        this._pastWinner = new Player("NO WINNER",0,0);
         this._pastWinners = new Array<Player>;
         this._entrants = new Array<Player>;
         this._gameList = new Array<Game>;
@@ -55,6 +63,11 @@ export class Tournament{
         
         let round1 = this._entrants;
         console.log(round1);
+        if(round1.length < 8){
+            notifList.push("No tournament held");
+            console.error("ERROR: Not enough players to play tournament");
+            return notifList;
+        }
         let round2 =new Array<Player>;
         let round3 = new Array<Player>;
         let roundList =new  Array<Array<Player>>;
@@ -95,31 +108,7 @@ export class Tournament{
         return notifList;
         
     }
-/*
-    playNextRound(){
-        let players = this._entrants;
-        let toReturn = new Array<Player>;
-        
-        let reverseCounter = players.length - 1;
-        for(let i = 0; i < this._gameList.length; i++){
-            toReturn.push(this._gameList[i].playGame());
-        }
-        this._entrants = toReturn;
-        if(toReturn.length == 1){
-            this._pastWinners.push(toReturn[0]);
-            this._pastWinner = toReturn[0];
-            return;
-        }
-        this._gameList = new Array<Game>;
-        for(let i = 0; i < toReturn.length/2; i ++){
-            toReturn[i]._points += this._points;
-            toReturn[reverseCounter]._points += this._points;
-            let game = new Game(toReturn[i],toReturn[reverseCounter]);
-            reverseCounter--;
-            this._gameList.push(game);
-        }
-    }
-*/
+
 
 
 }

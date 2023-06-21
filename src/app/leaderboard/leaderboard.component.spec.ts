@@ -1,6 +1,8 @@
+import { PlayernameComponent } from './../playername/playername.component';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LeaderboardComponent } from './leaderboard.component';
+
 
 describe('LeaderboardComponent', () => {
   let component: LeaderboardComponent;

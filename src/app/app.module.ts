@@ -1,6 +1,6 @@
-import { LeaderboardService } from './leaderboard.service';
-import { TournamentService } from './tournament/tournament.service';
-import { PlayerService } from './player/player-service';
+import { LeaderboardService } from './services/leaderboard.service';
+import { TournamentService } from './services/tournament.service';
+import { PlayerService } from './services/player-service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,10 +11,13 @@ import { GameComponent } from './game/game.component';
 import { DbComponent } from './db/db.component';
 import { FormsModule } from '@angular/forms';
 import { Player } from './player/player';
-import { NotificationService } from './notifications/notification.service';
+import { NotificationService } from './services/notification.service';
 import { TournamentComponent } from './tournament/tournament.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { WeekstatusComponent } from './weekstatus/weekstatus.component';
+import { TeamComponent } from './team/team.component';
+import { HomeComponent } from './home/home.component';
+import { PlayernameComponent } from './playername/playername.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { WeekstatusComponent } from './weekstatus/weekstatus.component';
     DbComponent,
     TournamentComponent,
     NotificationsComponent,
-    WeekstatusComponent
+    WeekstatusComponent,
+    TeamComponent,
+    HomeComponent,
+    PlayernameComponent,
   
   ],
   imports: [

@@ -1,7 +1,10 @@
+import { PlayernameComponent } from './../playername/playername.component';
 import { Component,OnInit } from '@angular/core';
-import { PlayerService } from '../player/player-service';
+import { PlayerService } from '../services/player-service';
 import { Player } from '../player/player';
-import { LeaderboardService } from '../leaderboard.service';
+import { LeaderboardService } from '../services/leaderboard.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-leaderboard',
@@ -10,7 +13,7 @@ import { LeaderboardService } from '../leaderboard.service';
 })
 export class LeaderboardComponent implements OnInit {
   players : Array<Player>; 
-  constructor(private leaderboardService : LeaderboardService){
+  constructor(private leaderboardService : LeaderboardService, private router: Router){
     this.players = [];
   }
 
@@ -20,5 +23,9 @@ export class LeaderboardComponent implements OnInit {
 
   setPlayers() : Player[]{
     return this.leaderboardService.sortPlayers(10);
+  }
+
+  onPlayerClick(playerName: string) {
+    this.router.navigate(['/player', playerName]);
   }
 }

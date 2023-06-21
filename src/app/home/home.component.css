@@ -1,0 +1,11 @@
+.left-element {
+    width : 50%;
+    height : 100%; 
+    float: left;
+  }
+  
+.right-element {
+    width : 35%;
+    height : 100%; 
+    float: right;
+  }

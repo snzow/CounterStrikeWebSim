@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Tournament } from './tournament';
-import { PlayerService } from '../player/player-service';
-import { LeaderboardService } from '../leaderboard.service';
-import { NotificationService } from '../notifications/notification.service';
+import { Tournament } from '../tournament/tournament';
+import { PlayerService } from './player-service';
+import { LeaderboardService } from './leaderboard.service';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class TournamentService {
@@ -15,10 +15,15 @@ export class TournamentService {
       this.tList = new Array<Tournament>;
       this.eventCounter = 0;
 
-      this.tList.push(new Tournament("Tourney 1",15,15,8,0));
-      this.tList.push(new Tournament("Tourney 2",15,15,8,1));
-      this.tList.push(new Tournament("Tourney 3",15,15,8,0));
-      this.tList.push(new Tournament("Tourney 4",15,15,8,1));
+      this.tList.push(new Tournament("Fall Major",0,15,8));
+      this.tList.push(new Tournament("PNW Minor",1,15,8));
+      this.tList.push(new Tournament("Northeast Minor",1,15,8));
+      this.tList.push(new Tournament("SE Minor",1,15,8));
+      this.tList.push(new Tournament("Winter Major",0,15,8));
+      this.tList.push(new Tournament("American Minor",1,15,8));
+      this.tList.push(new Tournament("New Leaf Minor",1,15,8));
+      this.tList.push(new Tournament("Spring Major",0,15,8));
+      this.tList.push(new Tournament("World Championship",0,15,8,60));
 
       this._currentTourney = this.tList[0];
 

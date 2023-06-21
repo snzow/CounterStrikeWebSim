@@ -7,7 +7,11 @@ import { Player } from './player';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent {
+  player : Player;
 
+  constructor(player : Player){
+    this.player = player;
+  }
 
   
 

@@ -1,6 +1,6 @@
-import { PlayerService } from './player/player-service';
+import { PlayerService } from './player-service';
 import { Injectable } from '@angular/core';
-import { Player } from './player/player';
+import { Player } from '../player/player';
 
 @Injectable({
   providedIn: 'root'
