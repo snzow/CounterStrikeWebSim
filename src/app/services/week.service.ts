@@ -15,7 +15,7 @@ export class WeekService {
 
   nextWeek(){
     this.week++;
-    if(this.week >= this.tournamentService.tList.length + 2){
+    if(this.week >= this.tournamentService.tList.length + 1){
       this.playerService.yearEnd();
       this.week = 1;
     }

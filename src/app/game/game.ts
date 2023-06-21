@@ -1,42 +1,22 @@
 import { Player } from "../player/player";
+import { Team } from "../team/team";
+import { InGamePlayer } from "./in-game-player";
 
 export class Game{ 
 
-    playerA : Player;
-    playerB : Player;
+    team1 : Team;
+    team2 : Team;
+    ct : Array<Player>;
+    t : Array<Player>;
 
-    constructor (playerA : Player, playerB : Player){
-        this.playerA = playerA;
-        this.playerB = playerB;
+    constructor (team1 : Team, team2 : Team){
+        this.team1 = team1;
+        this.team2 = team2;
+        this.ct = team1.players.slice();
+        this.t = team2.players.slice();
     }
 
-
     playGame() : Player{
-        
-        let p1s = this.playerA.skill;
-        let p2s = this.playerB.skill;
-        let p1Stocks = 4;
-        let p2Stocks = 4;
-        while(p1Stocks > 0 && p2Stocks > 0){
-            let seed = this.getRandomInt(p1s + p2s);
-            if(seed > p1s){
-                p1Stocks--;
-            }
-            else{
-                p2Stocks--;
-            }
-        }
-        if(p1Stocks > 0){
-            this.playerA.addWin();
-            this.playerB.addLoss();
-            return this.playerA;
-        }
-        else{
-            this.playerA.addLoss();
-            this.playerB.addWin();
-            return this.playerB;
-        }
-
         
 
     }

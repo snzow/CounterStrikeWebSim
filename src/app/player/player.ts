@@ -66,16 +66,17 @@ export class Player{
         return this._pointsY + this._pointsL;
     }
 
-    addWin(){
+    addWin(p : Player){
         this._wins++;
         this._winsY++;
-        this._skill += 15;
+        this.ratingUpdate(p.skill,true);
     }
 
-    addLoss(){
+    addLoss(p : Player){
         this._lossesY++;
         this._losses++;
-        this._skill -= 15;
+        this.ratingUpdate(p.skill,false);
+        
     }
 
     addPoints(amt : number){
@@ -92,5 +93,39 @@ export class Player{
         this._lossesY = 0;
         this._pointsL = this._pointsY / 2;
         this._pointsY = 0;
+    }
+
+    ratingUpdate(oppSkill : number,win :boolean){
+        if(this._skill >= oppSkill + 100){
+            if(win){
+                this._skill += 5;
+            }
+            else{
+                this._skill -= 15;
+            }
+        }
+        else if(this._skill >= oppSkill - 100){
+            if(win){
+                this._skill += 10;
+            }
+            else{
+                this._skill -= 10;
+            }
+        }
+        else{
+            if(win){
+                this._skill += 15;
+            }
+            else{
+                this._skill -= 5;
+            }
+        }
+    }
+
+    isFA() : boolean{
+        if(this._team.name == "FREE AGENT"){
+            return true;
+        }
+        return false;
     }
 }
