@@ -70,12 +70,18 @@ export class Player{
         this._wins++;
         this._winsY++;
         this.ratingUpdate(p.skill,true);
+        if(this.skill > 2000){
+            this._skill = 1900;
+        }
     }
 
     addLoss(p : Player){
         this._lossesY++;
         this._losses++;
         this.ratingUpdate(p.skill,false);
+        if(this.skill < 1000){
+            this._skill = 1200;
+        }
         
     }
 

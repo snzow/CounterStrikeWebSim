@@ -17,11 +17,7 @@ export class GameComponent
 
   }
 
-  playGame(p1 : Player, p2 : Player){   
-    let g = new Game(p1,p2);
-    g.playGame;
-
-  }
+  
   
 
 

@@ -24,4 +24,6 @@ export class WeekstatusComponent {
     getWeek(){
       return this.weekService.getWeek();
     }
+
+   
 }

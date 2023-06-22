@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PlayerNameGeneratorService } from './player-name-generator.service';
+import { PlayerNameGeneratorService } from '../services/player-name-generator.service';
 
 describe('PlayerNameGeneratorService', () => {
   let service: PlayerNameGeneratorService;

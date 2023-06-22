@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WeekService } from './services/week.service';
+import { WeekService } from '../services/week.service';
 
 describe('WeekService', () => {
   let service: WeekService;

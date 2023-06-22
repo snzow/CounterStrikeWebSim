@@ -20,7 +20,7 @@ export class PlayerService{
         this.addPlayer("Charfra",1850);
         this.addPlayer("chousto",1850);
         this.addPlayer("Sekler", 1850);
-        this.addPlayer();
+        
 
         
     }

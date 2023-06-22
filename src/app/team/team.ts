@@ -37,5 +37,6 @@ export class Team{
     signPlayer(p : Player){
         p.signContract(this,this.balance/10,3);
     }
+    
 
 }
