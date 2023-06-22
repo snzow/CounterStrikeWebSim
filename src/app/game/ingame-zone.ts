@@ -5,10 +5,12 @@ export class InGameZone{
 
     ct : Array<InGamePlayer>;
     t : Array<InGamePlayer>;
+    name : string;
 
-    constructor(){
+    constructor(name : string){
         this.ct = new Array<InGamePlayer>;
         this.t = new Array<InGamePlayer>;
+        this.name = name;
     }
 
     addPlayer(p : InGamePlayer,team :number){
@@ -22,16 +24,21 @@ export class InGameZone{
 
     removePlayer(p : InGamePlayer){
         if(this.ct.includes(p)){
-            this.ct = this.ct.splice(this.ct.indexOf(p),1);
+            const index = this.ct.indexOf(p,0);
+            this.ct.splice(index,1);
         }
         else{
-            this.t = this.t.splice(this.t.indexOf(p),1);
+            const index = this.t.indexOf(p,0);
+            this.t.splice(index,1);
         }
     }
 
     tick(){
-        this.ct.forEach(player => player.combatTick);
-        this.t.forEach(player => player.combatTick);
+        console.log(this.name + " tick");
+        this.ct.forEach(player => console.log("ct: " + player.name));
+        this.t.forEach(player => console.log("t: " + player.name));
+        this.ct.forEach(player => player.combatTick());
+        this.t.forEach(player => player.combatTick());
     }
     
 

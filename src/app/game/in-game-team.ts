@@ -45,6 +45,7 @@ export class InGameTeam{
             this.livingPlayers.forEach(player => player.changeLocation(this.map.ctSpawn));
         }
         
+        
     }
 
     tSide(){
@@ -63,7 +64,6 @@ export class InGameTeam{
         let seed = this.genService.getRandomNumber(0,2);
         if(seed == 0){
             this.players[0].changeLocation(this.map.A);
-            
         }
         else{
             this.players[0].changeLocation(this.map.B);
@@ -80,7 +80,7 @@ export class InGameTeam{
     }
     
     executeB(){
-        
+        this.players.forEach(player => player.changeLocation(this.map.B));
     }
 
     

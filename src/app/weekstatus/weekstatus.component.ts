@@ -21,11 +21,16 @@ export class WeekstatusComponent {
     this.ns.clearNotifs();
     this.weekService.nextWeek();
     this.mmS.playGame();
-    //for(let i = 0; i < 100; i++){
-    //  this.mmS.playGame();
-  //  }
+    /*
+    for(let i = 0; i < 50; i++){
+      for(let j = 9 ; j < this.mmS.totalPlayers(); j += 10){
+        this.ns.clearNotifs();
+        this.mmS.playGame(j);
+        
+      } 
+     }
+     */
     this.stage = this.tournamentService._currentTourney._name;
-    //this.tournamentService.runNextTourney();
     }
   
     getWeek(){

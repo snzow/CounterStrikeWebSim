@@ -30,15 +30,19 @@ export class MatchmakingService {
     ps.sort((a,b) => b.skill - a.skill)
     for(let i = seed; i > seed - 10; i--){
       if(i % 2 == 0){
-        console.log("adding " + ps[i].name + "to T Side");
+        console.log("adding " + ps[i].name + " to T Side");
         this.t.players.push(ps[i]);
       }
       else{
-        console.log("adding " + ps[i].name + "to CT Side");
+        console.log("adding " + ps[i].name + " to CT Side");
         this.ct.players.push(ps[i])
       }
     }
     let game = new Game(this.t,this.ct,this.notServ,this.gunServ,this.gs);
     game.playGame();
+   }
+
+   totalPlayers() : number{
+    return this.playerService.players.length;
    }
 }

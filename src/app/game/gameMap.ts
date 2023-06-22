@@ -14,10 +14,10 @@ export class GameMap{
 
     constructor(name : string){
         this.name = name;
-        this.A = new InGameZone();
-        this.B = new InGameZone();
-        this.tSpawn = new InGameZone();
-        this.ctSpawn = new InGameZone();
+        this.A = new InGameZone("A");
+        this.B = new InGameZone("B");
+        this.tSpawn = new InGameZone("T SPAWN");
+        this.ctSpawn = new InGameZone("CT SPAWN");
         this.bombPlanted = false;
         this.areas = new Array<InGameZone>;
         this.areas.push(this.A);
@@ -31,7 +31,7 @@ export class GameMap{
         if(this.getCtPlayerCount() == 0){
             return 1;
         }
-        else if(this.getTPlayerCount() == 1){
+        else if(this.getTPlayerCount() == 0){
             return 0;
         }
         else{
@@ -40,16 +40,21 @@ export class GameMap{
     }
 
     tick(){
+        console.log("map tick");
         this.areas.forEach(area => area.tick());
     }
 
 
     getCtPlayerCount(){
-        return this.A.ct.length + this.B.ct.length + this.ctSpawn.ct.length;
+        let x = this.A.ct.length + this.B.ct.length + this.ctSpawn.ct.length;
+        console.log(x);
+        return x;
     }
     
     getTPlayerCount(){
-        return this.A.t.length + this.B.t.length + this.tSpawn.t.length;
+        let x = this.A.t.length + this.B.t.length + this.tSpawn.t.length;
+        console.log(x);
+        return x;
     }
     
     getOtherSite(zone : InGameZone){

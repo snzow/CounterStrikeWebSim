@@ -40,6 +40,7 @@ export class InGamePlayer{
     }
 
     combatTick(){
+        console.log(this.name + " combat tick");
         let opponents;
         if(this.side == 0){
             opponents = this.location.t;
@@ -47,9 +48,9 @@ export class InGamePlayer{
         else{
             opponents = this.location.ct;
         }
-        if(this.target == undefined){
+        if(this.target == undefined || !opponents.includes(this.target)){
             if(opponents.length > 0){
-                this.target = opponents[0];
+                this.target = opponents[this.gs.getRandomNumber(0,opponents.length)];
                 return;
             }
         }
@@ -68,14 +69,16 @@ export class InGamePlayer{
 
     shootAt(p : InGamePlayer){
         let seed = this.gs.getRandomNumber(0,2001);
+       // console.log(this.name + " shooting at " + p.name);
         if(seed <= this.skill){
+            console.log("hit");
             this.gunCD = this.gun.cd;
             let dmg = this.gun.dmg;
+            
             if(seed >= this.skill - 100){
                 dmg = this.gun.dmg * 2;
             }
             if(p.hit(dmg)){
-
                 this.location.removePlayer(p);
                 p.deaths++;
                 this.kills++;
@@ -95,6 +98,8 @@ export class InGamePlayer{
         if(this.health <= 0){
             this.health = 100;
             this.armor = false;
+            this.team.deadPlayers.push(this);
+            this.team.livingPlayers.splice(this.team.livingPlayers.indexOf(this),1);
             return true;
         }
         else{
@@ -106,6 +111,7 @@ export class InGamePlayer{
         if(this.location != undefined){
             this.location.removePlayer(this);
         }
+        console.log(this.name + " moving location from " + this.location.name + " To " + zone.name);
         this.location = zone;
         zone.addPlayer(this,this.team.side);
         this.target = undefined;
