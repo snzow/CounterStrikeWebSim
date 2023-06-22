@@ -11,8 +11,8 @@ export class InGameZone{
         this.t = new Array<InGamePlayer>;
     }
 
-    addPlayer(p : InGamePlayer,team : string){
-        if(team == "ct"){
+    addPlayer(p : InGamePlayer,team :number){
+        if(team == 0){
             this.ct.push(p);
         }
         else{

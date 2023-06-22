@@ -14,7 +14,7 @@ export class GameComponent
   
 
   constructor(private playerService : PlayerService){
-
+    
   }
 
   

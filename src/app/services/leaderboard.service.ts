@@ -27,10 +27,10 @@ export class LeaderboardService {
   
 
   sortPlayerMethod(p1 : Player, p2 : Player){
-    if(p1.points > p2.points){
+    if(p1._elo > p2._elo){
       return -1;
     }
-    else if(p2.points > p1.points){
+    else if(p2._elo > p1._elo){
       return 1;
     }
     else{

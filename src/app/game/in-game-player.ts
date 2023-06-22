@@ -3,9 +3,12 @@ import { InGameTeam } from "./in-game-team";
 import { Gun } from "./gun";
 import { InGameZone } from "./ingame-zone";
 import { GeneralService } from "../services/general.service";
+import { NotificationService } from "../services/notification.service";
+import { GameMap } from "./gameMap";
 
 export class InGamePlayer{
     name : string;
+    map : GameMap;
     health: number;
     skill :number;
     armor : boolean;
@@ -20,7 +23,7 @@ export class InGamePlayer{
     deaths : number;
 
 
-    constructor(name : string, skill : number, team : InGameTeam, private gunService : GunService, private gs : GeneralService  , location : InGameZone, side : number){
+    constructor(name : string, skill : number, team : InGameTeam, private gunService : GunService, private gs : GeneralService  , location : InGameZone, side : number,private ns : NotificationService,map : GameMap ){
         this.name = name;
         this.health = 100;
         this.armor = false;
@@ -33,6 +36,7 @@ export class InGamePlayer{
         this.side = side;
         this.kills = 0;
         this.deaths = 0;
+        this.map = map;
     }
 
     combatTick(){
@@ -41,7 +45,7 @@ export class InGamePlayer{
             opponents = this.location.t;
         }
         else{
-            opponents = this.location.t;
+            opponents = this.location.ct;
         }
         if(this.target == undefined){
             if(opponents.length > 0){
@@ -50,7 +54,7 @@ export class InGamePlayer{
             }
         }
         else{
-            if(this.gunCD == 0){
+            if(this.gunCD <= 0){
                 this.shootAt(this.target);
             }
             else{
@@ -58,7 +62,7 @@ export class InGamePlayer{
             }
         }
         if(opponents.length == 0){
-
+            this.changeLocation(this.map.getOtherSite(this.location));
         }
     }
 
@@ -71,7 +75,12 @@ export class InGamePlayer{
                 dmg = this.gun.dmg * 2;
             }
             if(p.hit(dmg)){
+
                 this.location.removePlayer(p);
+                p.deaths++;
+                this.kills++;
+                this.ns.addNotif(this.name + " kills " + p.name + " with " + this.gun.name);
+                console.log(this.name + " kills " + p.name + " with " + this.gun.name);
                 this.money += 300;
             }
         }
@@ -94,7 +103,11 @@ export class InGamePlayer{
     }
 
     changeLocation(zone : InGameZone){
+        if(this.location != undefined){
+            this.location.removePlayer(this);
+        }
         this.location = zone;
+        zone.addPlayer(this,this.team.side);
         this.target = undefined;
     }
 
@@ -105,6 +118,10 @@ export class InGamePlayer{
         else{
             this.gun = this.gunService.getWeapon("rifle");
         }
+    }
+
+    getScore() :string{
+        return this.name + " || " + this.kills + "/" + this.deaths;
     }
     
 

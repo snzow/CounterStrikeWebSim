@@ -40,7 +40,7 @@ export class Tournament{
 
     
 
-    initTourney(entrants : Array<Player> ){
+   /* initTourney(entrants : Array<Player> ){
         this._gameList = new Array<Game>;
         this._entrants = entrants.slice();
         let players = this._entrants;
@@ -110,5 +110,5 @@ export class Tournament{
     }
 
 
-
+*/
 }

@@ -32,8 +32,8 @@ export class TournamentService {
 
    runNextTourney(){
      this.notifService.clearNotifs();
-      let eventList = this.tList[this.eventCounter].playTourney(this.playerService.players);
-      eventList.forEach(item => this.notifService.addNotif(item));
+      //let eventList = this.tList[this.eventCounter].playTourney(this.playerService.players);
+     // eventList.forEach(item => this.notifService.addNotif(item));
       this.eventCounter++;
       console.log(this.eventCounter);
       if(this.eventCounter >= this.tList.length){

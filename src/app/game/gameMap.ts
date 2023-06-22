@@ -51,4 +51,13 @@ export class GameMap{
     getTPlayerCount(){
         return this.A.t.length + this.B.t.length + this.tSpawn.t.length;
     }
+    
+    getOtherSite(zone : InGameZone){
+        if(zone == this.A){
+            return this.B
+        }
+        else{
+            return this.A;
+        }
+    }
 }
